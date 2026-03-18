@@ -59,6 +59,7 @@ wheels/
 *.egg
 *.md
 *.txt
+!requirements.txt
 *.json
 
 # Migrations (optional - uncomment if you want to ignore migrations)

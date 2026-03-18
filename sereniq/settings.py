@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from dj_database_url import config as dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,17 +85,24 @@ WSGI_APPLICATION = 'sereniq.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'sereniq_db'),
-        'USER': os.getenv('DB_USERNAME', 'sereniq_admin'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'sereniq_password'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME', 'sereniq_db'),
+#         'USER': os.getenv('DB_USERNAME', 'sereniq_admin'),
+#         'PASSWORD': os.getenv('DB_PASSWORD', 'sereniq_password'),
+#         'HOST': os.getenv('DB_HOST', 'localhost'),
+#         'PORT': os.getenv('DB_PORT', '5432'),
+#     }
+# }
 
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

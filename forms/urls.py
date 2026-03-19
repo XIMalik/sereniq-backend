@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import FormViewSet, QuestionViewSet, SubmissionViewSet
+from .views import FormViewSet, QuestionViewSet, SubmissionViewSet, HealthCheck
 from .admin_views import AdminDashboardViewSet
 
 router = DefaultRouter()
@@ -11,4 +11,5 @@ router.register(r'admin/dashboard', AdminDashboardViewSet, basename='admin-dashb
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('health/', HealthCheck.as_view(), name='health-check'),
 ]

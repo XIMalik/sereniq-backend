@@ -1,4 +1,5 @@
 from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -127,7 +128,7 @@ class SubmissionViewSet(viewsets.ReadOnlyModelViewSet):
         })
 
 
-class HealthCheckViewSet(viewsets.ViewSet):
+class HealthCheck(APIView):
     permission_classes = [AllowAny]
 
     @action(detail=False, methods=['get'])

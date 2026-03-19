@@ -125,3 +125,11 @@ class SubmissionViewSet(viewsets.ReadOnlyModelViewSet):
             'submission': SubmissionSerializer(submission).data,
             'score_result': score_result
         })
+
+
+class HealthCheckViewSet(viewsets.ViewSet):
+    permission_classes = [AllowAny]
+
+    @action(detail=False, methods=['get'])
+    def ping(self, request):
+        return Response({'message': 'OK'}, status=status.HTTP_200_OK)

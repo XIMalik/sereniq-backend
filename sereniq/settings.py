@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-&b_p1^8qz%8pq^0rcg)zo4n1t0f_w32cbqk=d5)1i1*shzp8t_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "sereniq-backend.onrender.com", ".onrender.com", "sereniqfe.netlify.app", "localhost:8080", "localhost:3000"]
 
 # Application definition
 
@@ -161,6 +161,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
 }
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://sereniq.netlify.app"]
 
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = [

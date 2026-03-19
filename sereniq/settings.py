@@ -21,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load environment variables
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
@@ -79,7 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'sereniq.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -176,6 +174,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8085',
     'http://localhost:8086',
     'http://localhost:8087',
+    'https://sereniq.netlify.app',
 ]
 
 CORS_ALLOW_CREDENTIALS = True

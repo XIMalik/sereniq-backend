@@ -131,6 +131,5 @@ class SubmissionViewSet(viewsets.ReadOnlyModelViewSet):
 class HealthCheck(APIView):
     permission_classes = [AllowAny]
 
-    @action(detail=False, methods=['get'])
-    def ping(self, request):
+    def get(self, request):
         return Response({'message': 'OK'}, status=status.HTTP_200_OK)

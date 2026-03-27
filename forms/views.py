@@ -18,6 +18,10 @@ class FormViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]  # Forms are public
 
     def get_queryset(self):
+        # For submit action, return all forms (no access key filtering needed)
+        if getattr(self, 'action', None) == 'submit':
+            return Form.objects.all()
+        
         # Get access key from headers
         access_key_string = self.request.headers.get('X-ACCESS-KEY')
         access_key = None
@@ -36,15 +40,16 @@ class FormViewSet(viewsets.ModelViewSet):
             else:  # sub
                 form._accessible = access_info['has_sub_access']
         
-        # Filter by form type if specified
-        form_type = self.request.query_params.get('form_type')
-        if form_type:
-            queryset = queryset.filter(form_type=form_type)
-        
-        # Filter by type if specified
-        type_filter = self.request.query_params.get('type')
-        if type_filter:
-            queryset = queryset.filter(type=type_filter)
+        # Filter by form type if specified (only if query_params exists)
+        if hasattr(self.request, 'query_params'):
+            form_type = self.request.query_params.get('form_type')
+            if form_type:
+                queryset = queryset.filter(form_type=form_type)
+            
+            # Filter by type if specified
+            type_filter = self.request.query_params.get('type')
+            if type_filter:
+                queryset = queryset.filter(type=type_filter)
             
         return queryset.order_by('form_type', 'type', 'order')
 

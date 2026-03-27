@@ -135,3 +135,26 @@ class WorkplaceGovernanceBooking(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class PilotRequest(models.Model):
+    WORKFORCE_SIZE_CHOICES = [
+        ('1-50', '1–50 employees'),
+        ('51-200', '51–200 employees'),
+        ('201-500', '201–500 employees'),
+        ('500+', '500+ employees'),
+    ]
+
+    name = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    role = models.CharField(max_length=255, blank=True)
+    email = models.EmailField()
+    workforce_size = models.CharField(max_length=20, choices=WORKFORCE_SIZE_CHOICES, blank=True)
+    challenge = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Pilot Request - {self.name} ({self.company})"
+
+    class Meta:
+        ordering = ['-created_at']

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking
+from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
 
 
 @admin.register(Service)
@@ -95,6 +95,27 @@ class WorkplaceGovernanceBookingAdmin(admin.ModelAdmin):
         ('Related Booking', {
             'fields': ('booking',),
             'classes': ('collapse',)
+        }),
+        ('Timestamps', {
+            'fields': ('created_at',),
+            'classes': ('collapse',)
+        }),
+    )
+
+
+@admin.register(PilotRequest)
+class PilotRequestAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'company', 'email', 'workforce_size', 'created_at']
+    list_filter = ['workforce_size', 'created_at']
+    search_fields = ['name', 'company', 'email']
+    readonly_fields = ['created_at']
+    
+    fieldsets = (
+        ('Contact Information', {
+            'fields': ('name', 'company', 'role', 'email')
+        }),
+        ('Company Details', {
+            'fields': ('workforce_size', 'challenge')
         }),
         ('Timestamps', {
             'fields': ('created_at',),

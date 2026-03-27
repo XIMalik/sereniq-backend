@@ -2,10 +2,10 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking
+from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
 from .serializers import (
     ServiceSerializer, BookingSerializer, IndividualBookingSerializer,
-    EmployeeBookingSerializer, WorkplaceGovernanceBookingSerializer
+    EmployeeBookingSerializer, WorkplaceGovernanceBookingSerializer, PilotRequestSerializer
 )
 from .permissions import IsServiceProviderOrAdmin, IsBookingOwnerOrStaff
 from users.permissions import IsAdmin
@@ -14,27 +14,35 @@ from users.permissions import IsAdmin
 class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny]  # Default to public access
 
     def perform_create(self, serializer):
-        serializer.save(provider=self.request.user)
+        if self.request.user.is_authenticated:
+            serializer.save(provider=self.request.user)
+        else:
+            # For unauthenticated requests, we need a default provider
+            from users.models import User
+            admin_user = User.objects.filter(role='admin').first()
+            serializer.save(provider=admin_user)
 
     def get_permissions(self):
-        if self.action == 'create':
+        # Only restrict admin operations
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [IsAdmin()]
-        elif self.action in ['update', 'partial_update', 'destroy']:
-            return [IsServiceProviderOrAdmin()]
+        # All other operations (list, retrieve) are public
         return [AllowAny()]
 
 
 class IndividualBookingViewSet(viewsets.ModelViewSet):
     queryset = IndividualBooking.objects.all()
     serializer_class = IndividualBookingSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny]  # Default to public access
 
     def get_permissions(self):
-        if self.action in ['update', 'partial_update', 'destroy']:
+        # Only restrict admin operations
+        if self.action in ['list', 'retrieve', 'update', 'partial_update', 'destroy']:
             return [IsAdmin()]
+        # Create operation is public
         return [AllowAny()]
 
     def perform_create(self, serializer):
@@ -76,11 +84,13 @@ class IndividualBookingViewSet(viewsets.ModelViewSet):
 class EmployeeBookingViewSet(viewsets.ModelViewSet):
     queryset = EmployeeBooking.objects.all()
     serializer_class = EmployeeBookingSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny]  # Default to public access
 
     def get_permissions(self):
-        if self.action in ['update', 'partial_update', 'destroy']:
+        # Only restrict admin operations
+        if self.action in ['list', 'retrieve', 'update', 'partial_update', 'destroy']:
             return [IsAdmin()]
+        # Create operation is public
         return [AllowAny()]
 
     def perform_create(self, serializer):
@@ -122,11 +132,13 @@ class EmployeeBookingViewSet(viewsets.ModelViewSet):
 class WorkplaceGovernanceBookingViewSet(viewsets.ModelViewSet):
     queryset = WorkplaceGovernanceBooking.objects.all()
     serializer_class = WorkplaceGovernanceBookingSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny]  # Default to public access
 
     def get_permissions(self):
-        if self.action in ['update', 'partial_update', 'destroy']:
+        # Only restrict admin operations
+        if self.action in ['list', 'retrieve', 'update', 'partial_update', 'destroy']:
             return [IsAdmin()]
+        # Create operation is public
         return [AllowAny()]
 
     def perform_create(self, serializer):
@@ -199,3 +211,16 @@ class BookingViewSet(viewsets.ModelViewSet):
         booking.status = new_status
         booking.save()
         return Response(BookingSerializer(booking).data)
+
+class PilotRequestViewSet(viewsets.ModelViewSet):
+    queryset = PilotRequest.objects.all()
+    serializer_class = PilotRequestSerializer
+    permission_classes = [AllowAny]
+    http_method_names = ['post', 'get']
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            return [IsAdmin()]
+        elif self.action == 'create':
+            return [AllowAny()]
+        return [AllowAny()]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking
+from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
 
 
 class ServiceSerializer(serializers.ModelSerializer):
@@ -80,3 +80,10 @@ class BookingSerializer(serializers.ModelSerializer):
         model = Booking
         fields = ['id', 'service', 'service_name', 'booking_type', 'customer', 'subscription_type', 'status', 'created_at']
         read_only_fields = ['id', 'created_at', 'customer']
+
+
+class PilotRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PilotRequest
+        fields = ['id', 'name', 'company', 'role', 'email', 'workforce_size', 'challenge', 'created_at']
+        read_only_fields = ['id', 'created_at']

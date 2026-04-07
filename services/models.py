@@ -5,10 +5,11 @@ from django.conf import settings
 class Service(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    duration = models.PositiveIntegerField(help_text='Duration in minutes')
+    duration = models.PositiveIntegerField(help_text='Duration in days')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     provider = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='services')
     created_at = models.DateTimeField(auto_now_add=True)
+    type = models.CharField(max_length=20, default='training')
 
     def __str__(self):
         return self.name

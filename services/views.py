@@ -12,9 +12,29 @@ from users.permissions import IsAdmin
 
 
 class ServiceViewSet(viewsets.ModelViewSet):
-    queryset = Service.objects.all()
     serializer_class = ServiceSerializer
-    permission_classes = [AllowAny]  # Default to public access
+    permission_classes = []  # Override global permissions
+
+    def get_queryset(self):
+        """
+        Custom ordering: Trainings first, then Packages, then Add-ons
+        """
+        from django.db.models import Case, When, IntegerField
+        
+        return Service.objects.annotate(
+            service_type_order=Case(
+                # Individual trainings (contains ™ but not Add-on, Bundle, or Discount)
+                When(name__contains='™', name__icontains='Add-on', then=3),  # Add-ons
+                When(name__contains='™', then=1),  # Individual trainings
+                # Packages (contains Bundle or Discount)
+                When(name__contains='Bundle', then=2),  # Packages
+                When(name__contains='Discount', then=2),  # Packages
+                # Add-ons (contains Add-on)
+                When(name__contains='Add-on', then=3),  # Add-ons
+                default=4,  # Other services
+                output_field=IntegerField()
+            )
+        ).order_by('service_type_order', 'price')
 
     def perform_create(self, serializer):
         if self.request.user.is_authenticated:
@@ -26,10 +46,10 @@ class ServiceViewSet(viewsets.ModelViewSet):
             serializer.save(provider=admin_user)
 
     def get_permissions(self):
-        # Only restrict admin operations
+        # Explicitly set permissions for each action
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             return [IsAdmin()]
-        # All other operations (list, retrieve) are public
+        # List and retrieve operations are completely public
         return [AllowAny()]
 
 

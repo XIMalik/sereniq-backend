@@ -5,12 +5,24 @@ from .models import Service, Booking, IndividualBooking, EmployeeBooking, Workpl
 class ServiceSerializer(serializers.ModelSerializer):
     provider = serializers.StringRelatedField(read_only=True)
     provider_id = serializers.IntegerField(source='provider.id', read_only=True)
+    service_type = serializers.SerializerMethodField()
 
     class Meta:
         model = Service
-        fields = ['id', 'name', 'description', 'duration', 'price', 'provider', 'provider_id', 'created_at']
+        fields = ['id', 'name', 'description', 'duration', 'price', 'provider', 'provider_id', 'type', 'service_type', 'created_at']
         read_only_fields = ['id', 'created_at']
-
+    
+    def get_service_type(self, obj):
+        """Determine service type for frontend grouping"""
+        name = obj.name
+        if '™' in name and 'Add-on' not in name and 'Bundle' not in name and 'Discount' not in name:
+            return 'training'
+        elif 'Bundle' in name or 'Discount' in name:
+            return 'package'
+        elif 'Add-on' in name:
+            return 'addon'
+        else:
+            return 'other'
 
 class IndividualBookingSerializer(serializers.ModelSerializer):
     service_name = serializers.CharField(source='service.name', read_only=True)

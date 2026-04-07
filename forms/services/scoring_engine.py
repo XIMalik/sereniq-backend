@@ -48,7 +48,15 @@ class ScoringEngine:
         
         for answer in answers:
             question = answer.question
-            answer_value = float(answer.answer_text)
+            
+            # Extract numeric value from answer text (handles "1 - Strongly Disagree" format)
+            answer_text = answer.answer_text.strip()
+            if ' - ' in answer_text:
+                # Extract numeric part from "1 - Strongly Disagree" format
+                answer_value = float(answer_text.split(' - ')[0])
+            else:
+                # Direct numeric value
+                answer_value = float(answer_text)
             
             # Apply reverse scoring if needed
             if question.reverse_scored:
@@ -67,7 +75,7 @@ class ScoringEngine:
         raw_score = total_score
         
         # Normalize to 0-100 scale
-        min_possible = len(answers) * (answers[0].question.min_value if answers else 0)
+        min_possible = len(answers) * (answers[0].question.min_value if answers and answers[0].question.min_value else 1)
         normalized_score = ((raw_score - min_possible) / (max_possible - min_possible)) * 100 if max_possible > min_possible else 0
         
         # Determine category based on form code

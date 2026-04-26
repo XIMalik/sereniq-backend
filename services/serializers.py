@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
 
-
 class ServiceSerializer(serializers.ModelSerializer):
     provider = serializers.StringRelatedField(read_only=True)
     provider_id = serializers.IntegerField(source='provider.id', read_only=True)

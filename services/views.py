@@ -9,6 +9,10 @@ from .serializers import (
 )
 from .permissions import IsServiceProviderOrAdmin, IsBookingOwnerOrStaff
 from users.permissions import IsAdmin
+from mailapp.email_service import send_ack_email
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ServiceViewSet(viewsets.ModelViewSet):
@@ -51,7 +55,6 @@ class ServiceViewSet(viewsets.ModelViewSet):
             return [IsAdmin()]
         # List and retrieve operations are completely public
         return [AllowAny()]
-
 
 class IndividualBookingViewSet(viewsets.ModelViewSet):
     queryset = IndividualBooking.objects.all()
@@ -100,7 +103,6 @@ class IndividualBookingViewSet(viewsets.ModelViewSet):
             booking.booking.save()
         return Response(IndividualBookingSerializer(booking).data)
 
-
 class EmployeeBookingViewSet(viewsets.ModelViewSet):
     queryset = EmployeeBooking.objects.all()
     serializer_class = EmployeeBookingSerializer
@@ -147,7 +149,6 @@ class EmployeeBookingViewSet(viewsets.ModelViewSet):
             booking.booking.status = new_status
             booking.booking.save()
         return Response(EmployeeBookingSerializer(booking).data)
-
 
 class WorkplaceGovernanceBookingViewSet(viewsets.ModelViewSet):
     queryset = WorkplaceGovernanceBooking.objects.all()
@@ -196,7 +197,6 @@ class WorkplaceGovernanceBookingViewSet(viewsets.ModelViewSet):
             booking.booking.save()
         return Response(WorkplaceGovernanceBookingSerializer(booking).data)
 
-
 class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
@@ -244,3 +244,11 @@ class PilotRequestViewSet(viewsets.ModelViewSet):
         elif self.action == 'create':
             return [AllowAny()]
         return [AllowAny()]
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+
+        try:
+            send_ack_email(instance)
+        except Exception as e:
+            logger.error(f"Email failed after PilotRequest creation: {str(e)}")

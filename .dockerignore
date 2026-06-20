@@ -1,0 +1,51 @@
+# Ignore Python and virtual envs
+__pycache__/
+*.pyc
+*.pyo
+.env/
+env/
+venv/
+
+# Ignore Git & system files
+.git/
+.gitignore
+.DS_Store
+
+# Ignore IDE/editor files
+.vscode/
+.vs/
+.project
+.settings/
+.toolstarget/
+
+# Ignore dependency directories
+node_modules/
+bin/
+obj/
+
+# Ignore logs, secrets, and media
+npm-debug.log
+info.log
+secrets.dev.yaml
+values.dev.yaml
+media/
+
+# Ignore tar and image files
+*.tar
+*.jpg
+*.png
+
+notes.txt
+ 
+# Ignore tar archives and SQL files anywhere
+*.tar
+*.sql
+
+.git
+__pycache__
+.env
+*.pyc
+*.log
+venv
+media
+env

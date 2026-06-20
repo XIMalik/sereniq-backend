@@ -2,14 +2,14 @@ from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
+from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest, ContactFormSubmission
 from .serializers import (
     ServiceSerializer, BookingSerializer, IndividualBookingSerializer,
-    EmployeeBookingSerializer, WorkplaceGovernanceBookingSerializer, PilotRequestSerializer
+    EmployeeBookingSerializer, WorkplaceGovernanceBookingSerializer, PilotRequestSerializer, ContactFormSubmissionSerializer
 )
 from .permissions import IsServiceProviderOrAdmin, IsBookingOwnerOrStaff
 from users.permissions import IsAdmin
-from mailapp.email_service import send_ack_email
+from mailapp.email_service import EmailService
 import logging
 
 logger = logging.getLogger(__name__)
@@ -81,6 +81,12 @@ class IndividualBookingViewSet(viewsets.ModelViewSet):
         individual_booking.booking = booking
         individual_booking.save()
 
+        try:
+            email_service = EmailService()
+            email_service.individual_booking_acknowledgment(individual_booking)        
+        except Exception as e:
+            logger.error(f"Email failed after IndividualBooking creation: {str(e)}")
+
     @action(detail=False, methods=['get'], permission_classes=[IsAdmin])
     def admin_list(self, request):
         """Admin endpoint to view all individual bookings"""
@@ -128,6 +134,12 @@ class EmployeeBookingViewSet(viewsets.ModelViewSet):
         employee_booking.booking = booking
         employee_booking.save()
 
+        try:
+            email_service = EmailService()
+            email_service.employee_booking_acknowledgment(employee_booking)        
+        except Exception as e:
+            logger.error(f"Email failed after EmployeeBooking creation: {str(e)}")
+
     @action(detail=False, methods=['get'], permission_classes=[IsAdmin])
     def admin_list(self, request):
         """Admin endpoint to view all employee bookings"""
@@ -174,6 +186,12 @@ class WorkplaceGovernanceBookingViewSet(viewsets.ModelViewSet):
         )
         workplace_booking.booking = booking
         workplace_booking.save()
+
+        try:
+            email_service = EmailService()
+            email_service.workplace_governance_booking_acknowledgment(workplace_booking)        
+        except Exception as e:
+            logger.error(f"Email failed after WorkplaceGovernanceBooking creation: {str(e)}")
 
     @action(detail=False, methods=['get'], permission_classes=[IsAdmin])
     def admin_list(self, request):
@@ -249,6 +267,29 @@ class PilotRequestViewSet(viewsets.ModelViewSet):
         instance = serializer.save()
 
         try:
-            send_ack_email(instance)
+            email_service = EmailService()
+            email_service.pilot_acknowledgment(instance)        
         except Exception as e:
             logger.error(f"Email failed after PilotRequest creation: {str(e)}")
+
+class ContactFormView(viewsets.ModelViewSet):
+    queryset = ContactFormSubmission.objects.all()
+    serializer_class = ContactFormSubmissionSerializer
+    permission_classes = [AllowAny]
+    http_method_names = ['post', 'get']
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            return [IsAdmin()]
+        elif self.action == 'create':
+            return [AllowAny()]
+        return [AllowAny()]
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+
+        try:
+            email_service = EmailService()
+            email_service.contact_form_acknowledgment(instance)        
+        except Exception as e:
+            logger.error(f"Email failed after ContactFormSubmission creation: {str(e)}")

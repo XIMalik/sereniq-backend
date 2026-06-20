@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    image: sereniq:v1
+    container_name: sereniq
+    command: sh ./start.sh
+    env_file: .env
+    ports:
+      - "1001:1001"

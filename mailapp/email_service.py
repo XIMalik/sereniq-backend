@@ -2,248 +2,429 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.utils.html import strip_tags
 import logging
-
+import smtplib
+import ssl
+from dotenv import load_dotenv
+import os
 logger = logging.getLogger(__name__)
 
-class EmailService:
-    @staticmethod
-    def send_welcome_email(user):
-        logger.info(f"Attempting to send welcome email to {user.email}")
-        
-        subject = 'Welcome to Sereniq!'
-        html_message = f"""
-            <div style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; border: 1px solid #dee2e6;">
-                <h2 style="color: #0d6efd; text-align: center;">Welcome to <span style="color: #0a58ca;">Sereniq</span>, {user.name}!</h2>
-                
-                <p style="font-size: 16px; color: #444; text-align: center;">
-                    Thank you for joining Sereniq! We're excited to have you on board.
-                </p>
-                
-                <div style="background-color: #e7f1ff; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                    <p style="font-size: 15px; color: #555; text-align: center;">
-                        ✨ Start creating <strong>dynamic forms</strong>, collecting <strong>responses</strong>, and managing <strong>service bookings</strong> with ease.
-                    </p>
-                </div>
-                
-                <div style="background-color: #fff; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 4px solid #0d6efd;">
-                    <h3 style="color: #0a58ca; margin-top: 0;">Your Account Details:</h3>
-                    <p style="margin: 5px 0; color: #444;"><strong>Email:</strong> {user.email}</p>
-                    <p style="margin: 5px 0; color: #444;"><strong>Role:</strong> {user.get_role_display()}</p>
-                </div>
-                
-                <p style="font-size: 15px; color: #444; text-align: center; margin-top: 20px;">
-                    Get started by logging in and exploring all the features Sereniq has to offer. 🚀
-                </p>
-                
-                <p style="text-align: center; font-size: 15px; color: #555; margin-top: 20px;">
-                    Best regards,<br>
-                    <strong style="color: #0d6efd;">The Sereniq Team</strong>
-                </p>
-            </div>
-            """
+load_dotenv()
 
-        plain_message = strip_tags(html_message)
-        
-        try:
-            logger.info(f"Email settings - Host: {settings.EMAIL_HOST}, Port: {settings.EMAIL_PORT}")
-            logger.info(f"From email: {settings.EMAIL_HOST_USER}")
-            logger.info(f"To email: {user.email}")
-            
-            result = send_mail(
-                subject,
-                plain_message,
-                settings.EMAIL_HOST_USER,
-                [user.email],
-                html_message=html_message,
-                fail_silently=False,
-            )
-            
-            logger.info(f"Welcome email sent successfully to {user.email}. Result: {result}")
-            return result
-            
-        except Exception as e:
-            logger.error(f"Failed to send welcome email to {user.email}: {str(e)}")
-            logger.error(f"Exception type: {type(e).__name__}")
-            raise e
-
-def send_acknowledgement_email(pilot):
-    logger.info(f"Attempting to send acknowledgement email to {pilot.email}")
-    
-    subject = 'What to expect from your Pilot Session – Sereniq Global Limited'
-    html_message = f"""
-        <div style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 30px;">
-            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #dcdfe3;">
-                
-                <h2 style="color: #0b1f3a; text-align: center; font-weight: 600; margin-bottom: 10px;">
-                    Thank you for your submission
-                </h2>
-                
-                <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
-                    We acknowledge receipt of your request and appreciate your interest in working with us.
-                </p>
-                
-                <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
-                    <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0; line-height: 1.6;">
-                        A member of our team is currently reviewing your information and will reach out to you shortly to continue the discussion.
-                    </p>
-                </div>
-                
-                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-top: 20px;">
-                    <h3 style="color: #0b1f3a; margin-top: 0; font-size: 18px; text-align: center;">About Sereniq</h3>
-                    <p style="font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 15px;">
-                        Sereniq is a leading business consulting firm dedicated to enhancing day-to-day business operations through data-driven insights. We specialize in collecting and analyzing staff performance submissions to identify key areas for improvement.
-                    </p>
-                    <p style="font-size: 15px; color: #333; line-height: 1.6;">
-                        By leveraging advanced analytics, we transform raw performance data into actionable recommendations that drive operational efficiency, boost employee engagement, and ultimately improve your company's bottom line.
-                    </p>
-                </div>
-                
-                <div style="background-color: #e7f1ff; padding: 20px; border-radius: 6px; margin-top: 20px;">
-                    <h3 style="color: #0b1f3a; margin-top: 0; font-size: 18px; text-align: center;">Benefits of Our Services</h3>
-                    <ul style="font-size: 15px; color: #333; line-height: 1.8; padding-left: 20px;">
-                        <li><strong>Enhanced Performance:</strong> Identify strengths and weaknesses across your workforce to optimize productivity.</li>
-                        <li><strong>Data-Driven Decisions:</strong> Make informed choices backed by comprehensive performance analytics.</li>
-                        <li><strong>Operational Improvements:</strong> Receive tailored recommendations to streamline processes and reduce inefficiencies.</li>
-                        <li><strong>Employee Development:</strong> Foster a culture of continuous improvement with targeted training and support.</li>
-                        <li><strong>Measurable Results:</strong> Track progress with clear metrics and see tangible improvements in your business operations.</li>
-                    </ul>
-                </div>
-                
-                <div style="background-color: #ffffff; padding: 15px; border-radius: 6px; margin-top: 20px; border-left: 3px solid #b8962e;">
-                    <h3 style="color: #0b1f3a; margin-top: 0; font-size: 16px;">Submission Details</h3>
-                    <p style="margin: 5px 0; color: #333;"><strong>Email:</strong> {pilot.email}</p>
-                </div>
-                
-                <p style="font-size: 14px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6;">
-                    Should we require any additional information, we will be in touch.
-                </p>
-                
-                <p style="text-align: center; font-size: 14px; color: #555; margin-top: 25px;">
-                    Kind regards,<br>
-                    <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
-                </p>
-                
-            </div>
-        </div>
-        """
-
-    plain_message = strip_tags(html_message)
-    
-    try:
-        logger.info(f"Email settings - Host: {settings.EMAIL_HOST}, Port: {settings.EMAIL_PORT}")
-        logger.info(f"From email: {settings.EMAIL_HOST_USER}")
-        logger.info(f"To email: {pilot.email}")
-        
-        result = send_mail(
-            subject,
-            plain_message,
-            settings.EMAIL_HOST_USER,
-            [pilot.email],
-            html_message=html_message,
-            fail_silently=False,
-        )
-        
-        logger.info(f"Acknowledgement email sent successfully to {pilot.email}. Result: {result}")
-        return result
-        
-    except Exception as e:
-        logger.error(f"Failed to send acknowledgement email to {pilot.email}: {str(e)}")
-        logger.error(f"Exception type: {type(e).__name__}")
-        raise e
-    
-
-
+import os
 import smtplib
 import ssl
 from email.message import EmailMessage
 
-def send_ack_email(instance):
-    port = 587
-    smtp_server = "smtp.zeptomail.com"
-    username="emailapikey"
-    password = "wSsVR611qUOiD/h4zTP4IOxpnQ4EDw/xE015ilSouif5HvvL/Mc5wUbKVAXxGfVKFWJoRWMa9rIvmhsD0TRb2Yl5y1ACWSiF9mqRe1U4J3x17qnvhDzMWGpYkhCMK44PwgxqnmJpEoU="
+# import os
+# from django.conf import settings
+# from django.http import JsonResponse
+# from django.core.mail import EmailMessage, get_connection
 
-    message = "Thank you for your submission. A member of our team will contact you shortly."
+class EmailService:
+    def __init__(self):
+        self.port = int(os.getenv('RESEND_SMTP_PORT', 587))
+        self.smtp_server = os.getenv('RESEND_SMTP_HOST')
+        self.username = os.getenv('RESEND_SMTP_USERNAME')
+        self.password = os.getenv('RESEND_API_KEY')
+        self.sender = os.getenv('FROM_EMAIL')
 
-    msg = EmailMessage()
-    msg['Subject'] = "The first step in transforming your workforce – Sereniq Global Limited"
-    msg['From'] = "noreply@sereniqglobal.com"
-    msg['To'] = instance.email
+    def send_email(self, data):
+        msg = EmailMessage()
+        logger.info(f"Preparing to send email with data: {data}")
 
-    # Plain text
-    msg.set_content(message)
+        msg['Subject'] = data.get('subject')
+        msg['From'] = self.sender
+        msg['To'] = data.get('recipient')
 
-    # HTML message
-    html_message = f"""
-    <div style="font-family: Arial, sans-serif; background-color: #f4f6f9;">
-    <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #dcdfe3;">
-        
-        <h2 style="color: #0b1f3a; text-align: center;">
-            The first step in transforming your workforce
-        </h2>
-        
-        <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
-            We acknowledge receipt of your request and sincerely appreciate your interest in working with us.
-        </p>
-        
-        <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
-            <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0;">
-                A member of our team is currently reviewing your information and will be in touch with you shortly to continue the conversation.
-            </p>
-        </div>
-        
-        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 6px; margin-top: 20px;">
-            <h3 style="color: #0b1f3a; text-align: center;">About Sereniq</h3>
-            
-            <p style="font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 15px;">
-                Sereniq is a forward-thinking business consulting firm dedicated to helping organizations improve their day-to-day operations through the power of data. We work closely with businesses to understand their unique challenges and uncover opportunities for growth, efficiency, and long-term success.
-            </p>
-            
-            <p style="font-size: 15px; color: #333; line-height: 1.6;">
-                By collecting and analyzing staff performance data, we provide actionable insights that enable better decision-making, enhance productivity, and strengthen overall organizational performance. Our goal is to transform complex data into clear, practical strategies that deliver measurable results.
-            </p>
-        </div>
-        
-        <div style="background-color: #e7f1ff; padding: 20px; border-radius: 6px; margin-top: 20px;">
-            <h3 style="color: #0b1f3a; text-align: center;">Benefits</h3>
-            <ul style="font-size: 15px; color: #333; line-height: 1.8;">
-                <li><strong>Enhanced Performance:</strong> Identify strengths and areas for improvement across your workforce.</li>
-                <li><strong>Data-Driven Decisions:</strong> Make informed choices backed by reliable insights.</li>
-                <li><strong>Operational Efficiency:</strong> Streamline processes and reduce inefficiencies.</li>
-                <li><strong>Employee Development:</strong> Support continuous growth with targeted recommendations.</li>
-                <li><strong>Measurable Results:</strong> Track progress and see tangible business improvements.</li>
-            </ul>
-        </div>
+        if data.get('html_message'):
+            msg.add_alternative(data.get('html_message'), subtype='html')
+
+        for attachment in data.get('attachments', []):
+            content = attachment.get('content')
+            maintype = attachment.get('maintype', 'application')
+            subtype = attachment.get('subtype', 'octet-stream')
+            filename = attachment.get('filename')
+
+            if isinstance(content, str):
+                content = content.encode('utf-8')
+
+            msg.add_attachment(content, maintype=maintype, subtype=subtype, filename=filename)
+
+        try:
+            if self.port == 465:
+                context = ssl.create_default_context()
+                with smtplib.SMTP_SSL(self.smtp_server, self.port, context=context) as server:
+                    server.login(self.username, self.password)
+                    server.send_message(msg)
+
+            elif self.port == 587:
+                with smtplib.SMTP(self.smtp_server, self.port) as server:
+                    server.starttls()
+                    server.login(self.username, self.password)
+                    server.send_message(msg)
+
+            else:
+                raise ValueError('Use 465 or 587 as SMTP port')
+
+            print(f"Email successfully sent to {data.get('recipient')}")
+
+        except Exception as e:
+            print(f"Error sending email: {e}")
+
+    def send_submissions_csv_report(self, csv_text, filename='all_submissions.csv'):
+        """Send a submissions CSV report to abdulmalikawesu@gmail.com."""
+        data = {
+            'subject': 'All Submissions CSV Report',
+            'recipient': 'abdulmalikawesu@gmail.com',
+            'html_message': (
+                '<p>Please find the attached CSV report containing all form submissions, '
+                'including form names, questions, answers, submission dates, and submission IDs.</p>'
+            ),
+            'attachments': [
+                {
+                    'filename': filename,
+                    'content': csv_text,
+                    'maintype': 'text',
+                    'subtype': 'csv'
+                }
+            ]
+        }
+
+        self.send_email(data)
+
+    def pilot_acknowledgment(self, instance):
+        html_message = f"""
+        <div style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #dcdfe3;">
                 
-        <p style="font-size: 14px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6;">
-            Should we require any additional information, we will reach out to you.
-        </p>
-        
-        <p style="text-align: center; margin-top: 20px;">
-            Kind regards,<br>
-            <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
-        </p>
-        
-    </div>
-</div>
-    """
+                <h2 style="color: #0b1f3a; text-align: center;">
+                    The first step in transforming your workforce
+                </h2>
+                
+                <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
+                    We acknowledge receipt of your request and sincerely appreciate your interest in working with us.
+                </p>
+                
+                <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
+                    <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0;">
+                        A member of our team is currently reviewing your information and will be in touch with you shortly.
+                    </p>
+                </div>
 
-    msg.add_alternative(html_message, subtype="html")
+                <!-- About Section -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">About Our Approach</h3>
+                    <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                        At Sereniq Global Limited, we focus on helping organizations unlock their full potential by leveraging data-driven insights. 
+                        Our solutions are designed to provide clarity into workforce performance, enabling smarter decisions that drive sustainable growth.
+                    </p>
+                </div>
 
-    try:
-        if port == 465:
-            context = ssl.create_default_context()
-            with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-                server.login(username, password)
-                server.send_message(msg)
-        elif port == 587:
-            with smtplib.SMTP(smtp_server, port) as server:
-                server.starttls()
-                server.login(username, password)
-                server.send_message(msg)
-        else:
-            print ("use 465 / 587 as port value")
-            exit()
-        print ("successfully sent")
-    except Exception as e:
-        print (e)
+                <!-- Benefits Section -->
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">What You Can Expect</h3>
+                    <ul style="font-size: 15px; color: #333; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Clear Performance Insights:</strong> Gain visibility into team productivity and performance trends.</li>
+                        <li><strong>Better Decision-Making:</strong> Make informed, data-backed strategic choices.</li>
+                        <li><strong>Improved Efficiency:</strong> Identify and eliminate operational bottlenecks.</li>
+                        <li><strong>Employee Growth:</strong> Support development with targeted, actionable recommendations.</li>
+                        <li><strong>Measurable Results:</strong> Track improvements with real, quantifiable outcomes.</li>
+                    </ul>
+                </div>
+
+                <!-- Closing -->
+                <p style="font-size: 14px; color: #444; text-align: center; margin-top: 25px; line-height: 1.6;">
+                    Should we require any additional information, we will reach out to you. We look forward to helping you build a more efficient and high-performing organization.
+                </p>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Kind regards,<br>
+                    <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
+                </p>
+
+            </div>
+        </div>
+        """
+
+        data = {
+            'subject': "The first step in transforming your workforce – Sereniq Global Limited",
+            'recipient': instance.email,
+            'html_message': html_message
+        }
+
+        self.send_email(data)
+
+    def individual_booking_acknowledgment(self, instance):
+        html_message = f"""
+        <div style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #dcdfe3;">
+                
+                <h2 style="color: #0b1f3a; text-align: center;">
+                    Your Individual Training Booking Confirmation
+                </h2>
+                
+                <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
+                    Thank you for booking our {instance.service.name}. We acknowledge receipt of your booking and appreciate your interest in our training services.
+                </p>
+                
+                <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
+                    <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0;">
+                        Our team is currently processing your booking and will be in touch with you shortly to confirm the details and schedule.
+                    </p>
+                </div>
+
+                <!-- Booking Details -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">Booking Details</h3>
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px;">
+                        <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                            <strong>Service:</strong> {instance.service.name}<br>
+                            <strong>Name:</strong> {instance.name}<br>
+                            <strong>Email:</strong> {instance.email}<br>
+                            <strong>Phone:</strong> {instance.phone}<br>
+                            <strong>Subscription Type:</strong> {instance.subscription_type.title()}<br>
+                            <strong>Status:</strong> {instance.status.title()}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">About Our Training</h3>
+                    <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                        At Sereniq Global Limited, we focus on helping individuals unlock their full potential by leveraging data-driven insights. 
+                        Our training programs are designed to provide clarity into personal performance, enabling smarter decisions that drive sustainable growth.
+                    </p>
+                </div>
+
+                <!-- Benefits Section -->
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">What You Can Expect</h3>
+                    <ul style="font-size: 15px; color: #333; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Personal Performance Insights:</strong> Gain visibility into your productivity and performance trends.</li>
+                        <li><strong>Better Decision-Making:</strong> Make informed, data-backed personal choices.</li>
+                        <li><strong>Improved Efficiency:</strong> Identify and eliminate personal bottlenecks.</li>
+                        <li><strong>Professional Growth:</strong> Support development with targeted, actionable recommendations.</li>
+                        <li><strong>Measurable Results:</strong> Track improvements with real, quantifiable outcomes.</li>
+                    </ul>
+                </div>
+
+                <!-- Closing -->
+                <p style="font-size: 14px; color: #444; text-align: center; margin-top: 25px; line-height: 1.6;">
+                    Should we require any additional information, we will reach out to you. We look forward to helping you achieve your professional goals.
+                </p>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Kind regards,<br>
+                    <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
+                </p>
+
+            </div>
+        </div>
+        """
+
+        data = {
+            'subject': "Your Individual Training Booking Confirmation – Sereniq Global Limited",
+            'recipient': instance.email,
+            'html_message': html_message
+        }
+
+        self.send_email(data)
+
+    def employee_booking_acknowledgment(self, instance):
+        html_message = f"""
+        <div style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #dcdfe3;">
+                
+                <h2 style="color: #0b1f3a; text-align: center;">
+                    Your Employee Assessment Booking Confirmation
+                </h2>
+                
+                <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
+                    Thank you for booking our {instance.service.name}. We acknowledge receipt of your booking and appreciate your interest in our employee assessment services.
+                </p>
+                
+                <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
+                    <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0;">
+                        Our team is currently processing your booking and will be in touch with you shortly to confirm the details and schedule.
+                    </p>
+                </div>
+
+                <!-- Booking Details -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">Booking Details</h3>
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px;">
+                        <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                            <strong>Service:</strong> {instance.service.name}<br>
+                            <strong>Company:</strong> {instance.company_name}<br>
+                            <strong>Contact Person:</strong> {instance.contact_person}<br>
+                            <strong>Email:</strong> {instance.email}<br>
+                            <strong>Number of Employees:</strong> {instance.number_of_employees}<br>
+                            <strong>Duration:</strong> {instance.duration} minutes<br>
+                            <strong>Subscription Type:</strong> {instance.subscription_type.title()}<br>
+                            <strong>Status:</strong> {instance.status.title()}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">About Our Employee Assessments</h3>
+                    <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                        At Sereniq Global Limited, we focus on helping organizations unlock their full potential by leveraging data-driven insights into employee performance. 
+                        Our assessments are designed to provide clarity into workforce performance, enabling smarter decisions that drive sustainable growth.
+                    </p>
+                </div>
+
+                <!-- Benefits Section -->
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">What You Can Expect</h3>
+                    <ul style="font-size: 15px; color: #333; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Employee Performance Insights:</strong> Gain visibility into team productivity and performance trends.</li>
+                        <li><strong>Data-Driven Decisions:</strong> Make informed, data-backed strategic choices.</li>
+                        <li><strong>Improved Efficiency:</strong> Identify and eliminate operational bottlenecks.</li>
+                        <li><strong>Employee Development:</strong> Support growth with targeted, actionable recommendations.</li>
+                        <li><strong>Measurable Results:</strong> Track improvements with real, quantifiable outcomes.</li>
+                    </ul>
+                </div>
+
+                <!-- Closing -->
+                <p style="font-size: 14px; color: #444; text-align: center; margin-top: 25px; line-height: 1.6;">
+                    Should we require any additional information, we will reach out to you. We look forward to helping you build a more efficient and high-performing organization.
+                </p>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Kind regards,<br>
+                    <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
+                </p>
+
+            </div>
+        </div>
+        """
+
+        data = {
+            'subject': "Your Employee Assessment Booking Confirmation – Sereniq Global Limited",
+            'recipient': instance.email,
+            'html_message': html_message
+        }
+
+        self.send_email(data)
+
+    def workplace_governance_booking_acknowledgment(self, instance):
+        html_message = f"""
+        <div style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #dcdfe3;">
+                
+                <h2 style="color: #0b1f3a; text-align: center;">
+                    Your Workplace Governance Assessment Booking Confirmation
+                </h2>
+                
+                <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
+                    Thank you for booking our {instance.service.name}. We acknowledge receipt of your booking and appreciate your interest in our workplace governance services.
+                </p>
+                
+                <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
+                    <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0;">
+                        Our team is currently processing your booking and will be in touch with you shortly to confirm the details and schedule.
+                    </p>
+                </div>
+
+                <!-- Booking Details -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">Booking Details</h3>
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px;">
+                        <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                            <strong>Service:</strong> {instance.service.name}<br>
+                            <strong>Company:</strong> {instance.company_name}<br>
+                            <strong>Contact Person:</strong> {instance.contact_person}<br>
+                            <strong>Email:</strong> {instance.email}<br>
+                            <strong>Phone:</strong> {instance.phone_number}<br>
+                            <strong>Number of Employees:</strong> {instance.number_of_employees}<br>
+                            <strong>Subscription Type:</strong> {instance.subscription_type.title()}<br>
+                            <strong>Status:</strong> {instance.status.title()}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div style="margin-top: 25px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">About Our Workplace Governance Services</h3>
+                    <p style="font-size: 15px; color: #333; line-height: 1.6;">
+                        At Sereniq Global Limited, we focus on helping organizations establish effective workplace governance through data-driven insights. 
+                        Our solutions are designed to provide clarity into governance performance, enabling smarter decisions that drive sustainable organizational growth.
+                    </p>
+                </div>
+
+                <!-- Benefits Section -->
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
+                    <h3 style="color: #0b1f3a; text-align: center;">What You Can Expect</h3>
+                    <ul style="font-size: 15px; color: #333; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Governance Performance Insights:</strong> Gain visibility into governance effectiveness and compliance trends.</li>
+                        <li><strong>Regulatory Compliance:</strong> Ensure your governance practices meet industry standards.</li>
+                        <li><strong>Risk Management:</strong> Identify and mitigate governance-related risks.</li>
+                        <li><strong>Stakeholder Alignment:</strong> Improve communication and alignment across your organization.</li>
+                        <li><strong>Measurable Results:</strong> Track improvements with real, quantifiable outcomes.</li>
+                    </ul>
+                </div>
+
+                <!-- Closing -->
+                <p style="font-size: 14px; color: #444; text-align: center; margin-top: 25px; line-height: 1.6;">
+                    Should we require any additional information, we will reach out to you. We look forward to helping you establish effective workplace governance.
+                </p>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Kind regards,<br>
+                    <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
+                </p>
+
+            </div>
+        </div>
+        """
+
+        data = {
+            'subject': "Your Workplace Governance Assessment Booking Confirmation – Sereniq Global Limited",
+            'recipient': instance.email,
+            'html_message': html_message
+        }
+
+        self.send_email(data)
+
+    def contact_form_acknowledgment(self, instance):
+        html_message = f"""
+        <div style="font-family: Arial, sans-serif; background-color: #f4f6f9; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #dcdfe3;">
+                
+                <h2 style="color: #0b1f3a; text-align: center;">
+                    We've Received Your Message
+                </h2>
+                
+                <p style="font-size: 15px; color: #333; text-align: center; line-height: 1.6;">
+                    Thank you for contacting Sereniq Global Limited.
+                </p>
+                
+                <div style="background-color: #0b1f3a; padding: 18px; border-radius: 6px; margin-top: 20px;">
+                    <p style="font-size: 14px; color: #e6d3a3; text-align: center; margin: 0;">
+                        Your message has been successfully received. A member of our team will review your inquiry and respond within 24 hours.
+                    </p>
+                </div>
+
+                <p style="font-size: 14px; color: #444; text-align: center; margin-top: 25px; line-height: 1.6;">
+                    We appreciate your interest and look forward to speaking with you.
+                </p>
+                
+                <p style="text-align: center; margin-top: 20px;">
+                    Kind regards,<br>
+                    <strong style="color: #0b1f3a;">Sereniq Global Limited</strong>
+                </p>
+
+            </div>
+        </div>
+        """
+
+        data = {
+            "subject": "We've received your message – Sereniq Global Limited",
+            "recipient": instance.email,
+            "html_message": html_message
+        }
+
+        self.send_email(data)

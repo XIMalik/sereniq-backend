@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
+from .models import *
 
 class ServiceSerializer(serializers.ModelSerializer):
     provider = serializers.StringRelatedField(read_only=True)
@@ -42,7 +42,6 @@ class IndividualBookingSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('You already have a pending or confirmed booking for this service')
         return data
 
-
 class EmployeeBookingSerializer(serializers.ModelSerializer):
     service_name = serializers.CharField(source='service.name', read_only=True)
 
@@ -61,7 +60,6 @@ class EmployeeBookingSerializer(serializers.ModelSerializer):
             if existing:
                 raise serializers.ValidationError('Your company already has a pending or confirmed booking for this service')
         return data
-
 
 class WorkplaceGovernanceBookingSerializer(serializers.ModelSerializer):
     service_name = serializers.CharField(source='service.name', read_only=True)
@@ -82,7 +80,6 @@ class WorkplaceGovernanceBookingSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Your company already has a pending or confirmed booking for this service')
         return data
 
-
 class BookingSerializer(serializers.ModelSerializer):
     service_name = serializers.CharField(source='service.name', read_only=True)
     customer = serializers.StringRelatedField(read_only=True, allow_null=True)
@@ -92,9 +89,14 @@ class BookingSerializer(serializers.ModelSerializer):
         fields = ['id', 'service', 'service_name', 'booking_type', 'customer', 'subscription_type', 'status', 'created_at']
         read_only_fields = ['id', 'created_at', 'customer']
 
-
 class PilotRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = PilotRequest
         fields = ['id', 'name', 'company', 'role', 'email', 'workforce_size', 'challenge', 'created_at']
+        read_only_fields = ['id', 'created_at']
+
+class ContactFormSubmissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactFormSubmission
+        fields = ['id', 'name', 'email', 'message', 'created_at']
         read_only_fields = ['id', 'created_at']

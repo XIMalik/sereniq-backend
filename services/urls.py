@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
     ServiceViewSet, BookingViewSet, IndividualBookingViewSet,
-    EmployeeBookingViewSet, WorkplaceGovernanceBookingViewSet, PilotRequestViewSet
+    EmployeeBookingViewSet, WorkplaceGovernanceBookingViewSet, PilotRequestViewSet, ContactFormView
 )
 
 router = DefaultRouter()
@@ -14,6 +14,7 @@ router.register(r'individual-bookings', IndividualBookingViewSet, basename='indi
 router.register(r'employee-bookings', EmployeeBookingViewSet, basename='employee-booking')
 router.register(r'workplace-governance-bookings', WorkplaceGovernanceBookingViewSet, basename='workplace-governance-booking')
 router.register(r'request-a-pilot', PilotRequestViewSet, basename='pilot-request')
+router.register(r'submit-contact-form', ContactFormView, basename='contact-form-submission')
 
 urlpatterns = [
     path('', include(router.urls)),

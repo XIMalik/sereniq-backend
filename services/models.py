@@ -17,7 +17,6 @@ class Service(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-
 class Booking(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -49,7 +48,6 @@ class Booking(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-
 class IndividualBooking(models.Model):
     STATUS_CHOICES = [
         ('pending', 'Pending'),
@@ -76,7 +74,6 @@ class IndividualBooking(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-
 
 class EmployeeBooking(models.Model):
     STATUS_CHOICES = [
@@ -107,7 +104,6 @@ class EmployeeBooking(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-
 class WorkplaceGovernanceBooking(models.Model):
     SUBSCRIPTION_CHOICES = [
         ('subscription', 'Subscription'),
@@ -137,7 +133,6 @@ class WorkplaceGovernanceBooking(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-
 class PilotRequest(models.Model):
     WORKFORCE_SIZE_CHOICES = [
         ('1-50', '1–50 employees'),
@@ -156,6 +151,18 @@ class PilotRequest(models.Model):
 
     def __str__(self):
         return f"Pilot Request - {self.name} ({self.company})"
+
+    class Meta:
+        ordering = ['-created_at']
+
+class ContactFormSubmission(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Contact Form Submission - {self.name}"
 
     class Meta:
         ordering = ['-created_at']

@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-&b_p1^8qz%8pq^0rcg)zo4n1t0f_w32cbqk=d5)1i1*shzp8t_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "sereniq-backend.onrender.com", ".onrender.com", "sereniqfe.netlify.app", "localhost:8080", "localhost:3000"]
+ALLOWED_HOSTS = ["fld380c7-8080.uks1.devtunnels.ms", "localhost", "127.0.0.1", "sereniq-backend.onrender.com", ".onrender.com", "sereniqfe.netlify.app", "localhost:8080", "localhost:3000"]
 
 # Application definition
 
@@ -89,24 +89,24 @@ WSGI_APPLICATION = 'sereniq.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME', 'sereniq_db'),
-#         'USER': os.getenv('DB_USERNAME', 'sereniq_admin'),
-#         'PASSWORD': os.getenv('DB_PASSWORD', 'sereniq_password'),
-#         'HOST': os.getenv('DB_HOST', 'localhost'),
-#         'PORT': os.getenv('DB_PORT', '5432'),
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'sereniq_db'),
+        'USER': os.getenv('DB_USERNAME', 'sereniq_admin'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'sereniq_password'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+    }
 }
+
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=os.environ.get("DATABASE_URL"),
+#         conn_max_age=600,
+#         conn_health_checks=True,
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -168,7 +168,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
 }
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://sereniqfe.netlify.app"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://sereniqfe.netlify.app", "https://fld380c7-8080.uks1.devtunnels.ms"]
 
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = [
@@ -183,6 +183,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8086',
     'http://localhost:8087',
     'https://sereniqfe.netlify.app',
+    'https://fld380c7-8080.uks1.devtunnels.ms',
 ]
 
 CORS_ALLOW_CREDENTIALS = True

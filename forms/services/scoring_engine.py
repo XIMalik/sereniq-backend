@@ -33,6 +33,11 @@ class ScoringEngine:
             (50, 74, 'At Risk'),
             (0, 49, 'Critical'),
         ],
+        'WPA': [
+            (75, 100, 'Healthy'),
+            (50, 74, 'At Risk'),
+            (0, 49, 'Critical'),
+        ],
     }
     
     @staticmethod

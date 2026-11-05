@@ -69,3 +69,6 @@ wheels/
 # EFIOVA instrument fixtures are source data, not generated output
 !forms/fixtures/**/*.json
 !docs/efiova/*.md
+
+# large archives
+*.tar

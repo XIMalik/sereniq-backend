@@ -170,7 +170,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
 }
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://sereniqfe.netlify.app", "https://fld380c7-8080.uks1.devtunnels.ms"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "https://sereniqfe.netlify.app", "https://fld380c7-8080.uks1.devtunnels.ms", "https://sereniqglobal.com"]
 
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = [
@@ -185,7 +185,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8086',
     'http://localhost:8087',
     'https://sereniqfe.netlify.app',
-    'https://fld380c7-8080.uks1.devtunnels.ms',
+    'https://fld380c7-8080.uks1.devtunnels.ms',, 
+    'https://sereniqglobal.com',
 ]
 
 CORS_ALLOW_CREDENTIALS = True

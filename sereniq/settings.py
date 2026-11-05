@@ -185,7 +185,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8086',
     'http://localhost:8087',
     'https://sereniqfe.netlify.app',
-    'https://fld380c7-8080.uks1.devtunnels.ms',, 
+    'https://fld380c7-8080.uks1.devtunnels.ms', 
     'https://sereniqglobal.com',
 ]
 

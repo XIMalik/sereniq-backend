@@ -3,7 +3,7 @@ from .models import *
 
 class ServiceSerializer(serializers.ModelSerializer):
     provider = serializers.StringRelatedField(read_only=True)
-    provider_id = serializers.IntegerField(source='provider.id', read_only=True)
+    provider_id = serializers.IntegerField(source='provider.id', read_only=True, allow_null=True)
     service_type = serializers.SerializerMethodField()
 
     class Meta:

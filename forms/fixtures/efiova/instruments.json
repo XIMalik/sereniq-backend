@@ -1,0 +1,1839 @@
+{
+  "schema_version": 1,
+  "source": "EFIOVA Full Subscription (v2.1) and Pilot Founding Client employee-facing packages",
+  "scoring_status": "provisional",
+  "instruments": [
+    {
+      "instrument_code": "EPA",
+      "instrument_name": "Operating Conditions Pulse",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "employee",
+      "reference_period": "Past 30 days",
+      "who_should_complete": "Employees.",
+      "intro": "This assessment asks how work is currently operating within your team. Responses are combined to understand team and organisational patterns, not to assess or rank individual employees.",
+      "how_to_respond": "Select one response for each statement. There are no right or wrong answers.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "none",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "EPA-F-01",
+          "text": "My team has enough capacity to manage its current workload effectively.",
+          "dimension": "capacity",
+          "construct_key": "EPA-F-01",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "EPA-F-02",
+          "text": "My team is clear about the work that matters most right now.",
+          "dimension": "priority_clarity",
+          "construct_key": "EPA-F-02",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "EPA-F-03",
+          "text": "Competing priorities make it difficult for my team to complete its most important work.",
+          "dimension": "priority_clarity",
+          "construct_key": "EPA-F-03",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "EPA-F-04",
+          "text": "My team can maintain its current pace of work without regularly becoming overwhelmed.",
+          "dimension": "capacity",
+          "construct_key": "EPA-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "EPA-F-05",
+          "text": "People in my team are able to work together effectively when demands increase.",
+          "dimension": "collaboration",
+          "construct_key": "EPA-F-05",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "EPA-F-06",
+          "text": "Important information is communicated clearly enough for my team to do its work effectively.",
+          "dimension": "communication",
+          "construct_key": "EPA-F-06",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 7,
+          "item_code": "EPA-F-07",
+          "text": "Recent changes in the organisation are making it harder for my team to work effectively.",
+          "dimension": "change_impact",
+          "construct_key": "EPA-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 8,
+          "item_code": "EPA-F-08",
+          "text": "My team remains committed to doing good work.",
+          "dimension": "commitment",
+          "construct_key": "EPA-F-08",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 9,
+          "item_code": "EPA-F-09",
+          "text": "My team is confident that it can meet the demands ahead.",
+          "dimension": "confidence",
+          "construct_key": "EPA-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 10,
+          "item_code": "EPA-F-10",
+          "text": "Overall, my team is currently operating in a way that is sustainable.",
+          "dimension": "sustainability",
+          "construct_key": "EPA-F-10",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "WDAI",
+      "instrument_name": "Work Demand Assessment",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "employee",
+      "reference_period": "Past 30 days",
+      "who_should_complete": "Employees in the agreed operating population.",
+      "intro": "This assessment asks about the demands created by your work. It helps EFIOVA understand how work is structured and where operating demands may be placing pressure on teams or processes.",
+      "how_to_respond": "Choose the response that best reflects how often the statement was true during the reference period.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "frequency",
+      "na_option": "none",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Never",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Rarely",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Sometimes",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Often",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Very Often",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "WDAI-F-01",
+          "text": "My work requires me to keep track of many pieces of information at the same time.",
+          "dimension": "cognitive_load",
+          "construct_key": "WDAI-F-01",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 2,
+          "item_code": "WDAI-F-02",
+          "text": "I have to switch frequently between different tasks or priorities during my work.",
+          "dimension": "cognitive_load",
+          "construct_key": "WDAI-F-02",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "WDAI-F-03",
+          "text": "My work requires long periods of sustained concentration.",
+          "dimension": "cognitive_load",
+          "construct_key": "WDAI-F-03",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "WDAI-F-04",
+          "text": "My work requires me to make many decisions within a short period of time.",
+          "dimension": "decision_load",
+          "construct_key": "WDAI-F-04",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 5,
+          "item_code": "WDAI-F-05",
+          "text": "I have to make important work decisions without having enough information or clarity.",
+          "dimension": "decision_load",
+          "construct_key": "WDAI-F-05",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "WDAI-F-06",
+          "text": "I often have to make one demanding work decision after another.",
+          "dimension": "decision_load",
+          "construct_key": "WDAI-F-06",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 7,
+          "item_code": "WDAI-F-07",
+          "text": "My work regularly requires me to handle difficult interactions with other people.",
+          "dimension": "emotional_load",
+          "construct_key": "WDAI-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 8,
+          "item_code": "WDAI-F-08",
+          "text": "My work requires me to manage how I respond during difficult interactions.",
+          "dimension": "emotional_load",
+          "construct_key": "WDAI-F-08",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 9,
+          "item_code": "WDAI-F-09",
+          "text": "My work requires me to manage difficult reactions from other people.",
+          "dimension": "emotional_load",
+          "construct_key": "WDAI-F-09",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 10,
+          "item_code": "WDAI-F-10",
+          "text": "Different people or priorities place conflicting expectations on my role.",
+          "dimension": "role_clarity",
+          "construct_key": "WDAI-F-10",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 11,
+          "item_code": "WDAI-F-11",
+          "text": "Responsibility for important tasks in my role is not always clear.",
+          "dimension": "role_clarity",
+          "construct_key": "WDAI-F-11",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 12,
+          "item_code": "WDAI-F-12",
+          "text": "I spend significant effort sorting out gaps or overlaps in responsibility before work can move forward.",
+          "dimension": "role_clarity",
+          "construct_key": "WDAI-F-12",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 13,
+          "item_code": "WDAI-F-13",
+          "text": "Work demands continue to occupy my attention outside working hours.",
+          "dimension": "recovery_boundaries",
+          "construct_key": "WDAI-F-13",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 14,
+          "item_code": "WDAI-F-14",
+          "text": "There is too little time between demanding periods of work for me to reset before the next one.",
+          "dimension": "recovery_boundaries",
+          "construct_key": "WDAI-F-14",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 15,
+          "item_code": "WDAI-F-15",
+          "text": "My work regularly extends into time that should be free from work demands.",
+          "dimension": "recovery_boundaries",
+          "construct_key": "WDAI-F-15",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 16,
+          "item_code": "WDAI-F-16",
+          "text": "I have more work to complete than the available time reasonably allows.",
+          "dimension": "time_pressure",
+          "construct_key": "WDAI-F-16",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 17,
+          "item_code": "WDAI-F-17",
+          "text": "My work requires me to maintain a high pace for long periods.",
+          "dimension": "time_pressure",
+          "construct_key": "WDAI-F-17",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 18,
+          "item_code": "WDAI-F-18",
+          "text": "I frequently have to work against tight deadlines.",
+          "dimension": "time_pressure",
+          "construct_key": "WDAI-F-18",
+          "polarity": "negative"
+        }
+      ]
+    },
+    {
+      "instrument_code": "OCEI",
+      "instrument_name": "Operating Capacity Assessment",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "employee",
+      "reference_period": "Past 30 days, compared with your usual working level",
+      "who_should_complete": "Employees in the agreed operating population.",
+      "intro": "This assessment asks whether recent work demands are affecting the usable capacity available to perform work consistently. Compare the stated period with your usual working level.",
+      "how_to_respond": "Choose the response that best reflects how often the statement was true during the reference period.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "frequency",
+      "na_option": "NE",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Never",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Rarely",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Sometimes",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Often",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Very Often",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough experience",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "OCEI-F-01",
+          "text": "Routine tasks have required more effort than usual to complete.",
+          "dimension": "effort_cost",
+          "construct_key": "OCEI-F-01",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 2,
+          "item_code": "OCEI-F-02",
+          "text": "Maintaining my normal work pace for sustained periods has required more effort than usual.",
+          "dimension": "effort_cost",
+          "construct_key": "OCEI-F-02",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "OCEI-F-03",
+          "text": "Maintaining my usual standard of work has required more deliberate effort than usual.",
+          "dimension": "effort_cost",
+          "construct_key": "OCEI-F-03",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "OCEI-F-04",
+          "text": "Normal work demands have left me with little capacity for unexpected issues.",
+          "dimension": "reserve_depletion",
+          "construct_key": "OCEI-F-04",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 5,
+          "item_code": "OCEI-F-05",
+          "text": "Even moderate increases in demand have quickly used up the capacity I still had available.",
+          "dimension": "reserve_depletion",
+          "construct_key": "OCEI-F-05",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "OCEI-F-06",
+          "text": "After sustained work, I have had little reserve for additional complex or high-consequence demands.",
+          "dimension": "reserve_depletion",
+          "construct_key": "OCEI-F-06",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 7,
+          "item_code": "OCEI-F-07",
+          "text": "A demanding work period has often reduced the capacity I had available in the next work period.",
+          "dimension": "recovery_lag",
+          "construct_key": "OCEI-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 8,
+          "item_code": "OCEI-F-08",
+          "text": "It has taken longer than usual for my working capacity to return after demanding periods.",
+          "dimension": "recovery_lag",
+          "construct_key": "OCEI-F-08",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 9,
+          "item_code": "OCEI-F-09",
+          "text": "Even after a lower-demand period at work, my working capacity has not always returned to its usual level.",
+          "dimension": "recovery_lag",
+          "construct_key": "OCEI-F-09",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 10,
+          "item_code": "OCEI-F-10",
+          "text": "During sustained demand, maintaining a consistent work pace has become harder than usual.",
+          "dimension": "performance_stability",
+          "construct_key": "OCEI-F-10",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 11,
+          "item_code": "OCEI-F-11",
+          "text": "During sustained demand, maintaining my usual quality standard has become harder than usual.",
+          "dimension": "performance_stability",
+          "construct_key": "OCEI-F-11",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 12,
+          "item_code": "OCEI-F-12",
+          "text": "During sustained demand, I have needed more checking than usual to keep my work consistent.",
+          "dimension": "performance_stability",
+          "construct_key": "OCEI-F-12",
+          "polarity": "negative"
+        }
+      ]
+    },
+    {
+      "instrument_code": "CRI",
+      "instrument_name": "Operating Culture Risk Assessment",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "visibility_staff",
+      "reference_period": "Approximately the past six months",
+      "who_should_complete": "Employees or managers with sufficient visibility into how work is normally carried out.",
+      "intro": "This assessment looks at how important problems are raised, how responsibility is handled, how information moves, how critical checks are maintained, and how the organisation learns from significant problems. Answer only where you have enough visibility to judge a statement.",
+      "how_to_respond": "Choose one response based on what you have personally observed. Select “Not enough visibility” if you cannot judge a statement reliably.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "NV",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough visibility",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "CRI-F-01",
+          "text": "Important risks or problems can be raised even when doing so may slow delivery.",
+          "dimension": "speak_up",
+          "construct_key": "CRI-F-01",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "CRI-F-02",
+          "text": "People can challenge a decision when they believe it creates avoidable risk.",
+          "dimension": "speak_up",
+          "construct_key": "CRI-F-02",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "CRI-F-03",
+          "text": "Serious concerns are escalated to someone with authority to act on them.",
+          "dimension": "speak_up",
+          "construct_key": "CRI-F-03",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "CRI-F-04",
+          "text": "People acknowledge responsibility when their decisions contribute to a problem.",
+          "dimension": "accountability",
+          "construct_key": "CRI-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "CRI-F-05",
+          "text": "Managers take responsibility for addressing significant problems within areas they oversee.",
+          "dimension": "accountability",
+          "construct_key": "CRI-F-05",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "CRI-F-06",
+          "text": "Accountability is applied consistently regardless of seniority or performance.",
+          "dimension": "accountability",
+          "construct_key": "CRI-F-06",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 7,
+          "item_code": "CRI-F-07",
+          "text": "Important problems are reported accurately, even when the message is unwelcome.",
+          "dimension": "information_integrity",
+          "construct_key": "CRI-F-07",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 8,
+          "item_code": "CRI-F-08",
+          "text": "Reports and updates make the scale and likely impact of significant problems clear.",
+          "dimension": "information_integrity",
+          "construct_key": "CRI-F-08",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 9,
+          "item_code": "CRI-F-09",
+          "text": "Material concerns reach decision-makers without unnecessary filtering or delay.",
+          "dimension": "information_integrity",
+          "construct_key": "CRI-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 10,
+          "item_code": "CRI-F-10",
+          "text": "Critical controls and quality standards remain in place when delivery pressure increases.",
+          "dimension": "control_discipline",
+          "construct_key": "CRI-F-10",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 11,
+          "item_code": "CRI-F-11",
+          "text": "Required checks are completed before work is treated as finished.",
+          "dimension": "control_discipline",
+          "construct_key": "CRI-F-11",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 12,
+          "item_code": "CRI-F-12",
+          "text": "When an exception to normal process is necessary, it is made visible and clearly owned.",
+          "dimension": "control_discipline",
+          "construct_key": "CRI-F-12",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 13,
+          "item_code": "CRI-F-13",
+          "text": "Targets and incentives do not encourage people to take avoidable risks to deliver results.",
+          "dimension": "incentives",
+          "construct_key": "CRI-F-13",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 14,
+          "item_code": "CRI-F-14",
+          "text": "Strong results do not protect poor risk-taking decisions from scrutiny.",
+          "dimension": "incentives",
+          "construct_key": "CRI-F-14",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 15,
+          "item_code": "CRI-F-15",
+          "text": "Performance expectations consider both results and how those results are achieved.",
+          "dimension": "incentives",
+          "construct_key": "CRI-F-15",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 16,
+          "item_code": "CRI-F-16",
+          "text": "Recurring problems are investigated for underlying causes rather than only fixed temporarily.",
+          "dimension": "learning",
+          "construct_key": "CRI-F-16",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 17,
+          "item_code": "CRI-F-17",
+          "text": "Lessons from significant problems are applied beyond the team where the problem first occurred.",
+          "dimension": "learning",
+          "construct_key": "CRI-F-17",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 18,
+          "item_code": "CRI-F-18",
+          "text": "After corrective action is taken, there is follow-through to check whether it solved the problem.",
+          "dimension": "learning",
+          "construct_key": "CRI-F-18",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "CPDA",
+      "instrument_name": "Capacity–Performance Dynamics Assessment",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "process_owner",
+      "reference_period": "Past 30 days",
+      "who_should_complete": "Process owner / operations lead with direct visibility into the selected process.",
+      "intro": "This assessment looks at the recent operating condition of one defined business process. Answer from direct process visibility; do not estimate where you do not have enough information.",
+      "how_to_respond": "Choose the response that best reflects how often the statement was true during the reference period.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "frequency",
+      "na_option": "NDV",
+      "is_attributable": true,
+      "options": [
+        {
+          "label": "Never",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Rarely",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Sometimes",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Often",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Very Often",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough data/visibility",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "CPDA-F-01",
+          "text": "Work has accumulated faster than the process could consistently clear it.",
+          "dimension": "throughput",
+          "construct_key": "CPDA-F-01",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 2,
+          "item_code": "CPDA-F-02",
+          "text": "Turnaround or cycle times have become longer than normally expected.",
+          "dimension": "throughput",
+          "construct_key": "CPDA-F-02",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "CPDA-F-03",
+          "text": "The amount of work completed has become less consistent from one period to another.",
+          "dimension": "throughput",
+          "construct_key": "CPDA-F-03",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "CPDA-F-04",
+          "text": "More work than usual has required correction or rework before it could be accepted as complete.",
+          "dimension": "quality",
+          "construct_key": "CPDA-F-04",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 5,
+          "item_code": "CPDA-F-05",
+          "text": "Errors, exceptions or failed checks have occurred more frequently than normally expected.",
+          "dimension": "quality",
+          "construct_key": "CPDA-F-05",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "CPDA-F-06",
+          "text": "Additional checking has been needed to maintain the expected standard of output.",
+          "dimension": "quality",
+          "construct_key": "CPDA-F-06",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 7,
+          "item_code": "CPDA-F-07",
+          "text": "Deadlines, service levels or delivery commitments have been missed more often than normally expected.",
+          "dimension": "reliability",
+          "construct_key": "CPDA-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 8,
+          "item_code": "CPDA-F-08",
+          "text": "Problems with this process have required more escalation than usual.",
+          "dimension": "reliability",
+          "construct_key": "CPDA-F-08",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 9,
+          "item_code": "CPDA-F-09",
+          "text": "The process has become less predictable in its ability to deliver expected results on time.",
+          "dimension": "reliability",
+          "construct_key": "CPDA-F-09",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 10,
+          "item_code": "CPDA-F-10",
+          "text": "A moderate increase in demand has quickly caused visible deterioration in process performance.",
+          "dimension": "resilience",
+          "construct_key": "CPDA-F-10",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 11,
+          "item_code": "CPDA-F-11",
+          "text": "Unexpected absence, disruption or loss of key capacity has quickly affected process output.",
+          "dimension": "resilience",
+          "construct_key": "CPDA-F-11",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 12,
+          "item_code": "CPDA-F-12",
+          "text": "Temporary workarounds, extended effort or repeated reprioritisation have been needed to maintain normal process performance.",
+          "dimension": "resilience",
+          "construct_key": "CPDA-F-12",
+          "polarity": "negative"
+        }
+      ]
+    },
+    {
+      "instrument_code": "EILL",
+      "instrument_name": "Executive Operating System Assessment",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "executive",
+      "reference_period": "Past six months",
+      "who_should_complete": "Executives / selected senior operating leaders.",
+      "intro": "This assessment looks at how the executive operating system sets priorities, clarifies decision authority, adapts to evidence, resolves cross-functional conflict, manages capacity and follows through on major commitments. It is not a personality assessment or an individual leader ranking.",
+      "how_to_respond": "Choose one response based on what normally happens in practice. Select “Not enough visibility” if you cannot judge a statement reliably.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "NV",
+      "is_attributable": true,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough visibility",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "EILL-F-01",
+          "text": "Senior leadership identifies a clear set of enterprise priorities that guide major decisions.",
+          "dimension": "prioritisation",
+          "construct_key": "EILL-F-01",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "EILL-F-02",
+          "text": "When new priorities are introduced, leadership makes clear what will receive less attention or stop.",
+          "dimension": "prioritisation",
+          "construct_key": "EILL-F-02",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "EILL-F-03",
+          "text": "Major resource-allocation decisions reflect the organisation's stated enterprise priorities.",
+          "dimension": "prioritisation",
+          "construct_key": "EILL-F-03",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "EILL-F-04",
+          "text": "For major decisions, it is clear who holds final decision authority.",
+          "dimension": "decision_rights",
+          "construct_key": "EILL-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "EILL-F-05",
+          "text": "Teams know which decisions they can make without seeking additional approval.",
+          "dimension": "decision_rights",
+          "construct_key": "EILL-F-05",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "EILL-F-06",
+          "text": "Escalation to senior leadership is reserved for decisions that genuinely require higher-level authority.",
+          "dimension": "decision_rights",
+          "construct_key": "EILL-F-06",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 7,
+          "item_code": "EILL-F-07",
+          "text": "Major decisions are supported by relevant evidence before commitments are made.",
+          "dimension": "evidence_adaptation",
+          "construct_key": "EILL-F-07",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 8,
+          "item_code": "EILL-F-08",
+          "text": "Material uncertainty is made explicit when major decisions are made.",
+          "dimension": "evidence_adaptation",
+          "construct_key": "EILL-F-08",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 9,
+          "item_code": "EILL-F-09",
+          "text": "Major decisions are formally reconsidered when new evidence invalidates key assumptions.",
+          "dimension": "evidence_adaptation",
+          "construct_key": "EILL-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 10,
+          "item_code": "EILL-F-10",
+          "text": "Leadership considers material cross-functional dependencies before making major commitments.",
+          "dimension": "cross_functional",
+          "construct_key": "EILL-F-10",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 11,
+          "item_code": "EILL-F-11",
+          "text": "Senior leaders resolve significant priority conflicts between functions before they create prolonged execution delays.",
+          "dimension": "cross_functional",
+          "construct_key": "EILL-F-11",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 12,
+          "item_code": "EILL-F-12",
+          "text": "Cross-functional trade-offs are decided according to enterprise-wide outcomes rather than the priorities of a single function.",
+          "dimension": "cross_functional",
+          "construct_key": "EILL-F-12",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 13,
+          "item_code": "EILL-F-13",
+          "text": "Leadership has a reliable view of available operating capacity before making major commitments.",
+          "dimension": "capacity_management",
+          "construct_key": "EILL-F-13",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 14,
+          "item_code": "EILL-F-14",
+          "text": "When demand exceeds available capacity, leadership makes explicit trade-offs in scope, timing or resources.",
+          "dimension": "capacity_management",
+          "construct_key": "EILL-F-14",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 15,
+          "item_code": "EILL-F-15",
+          "text": "Repeated capacity shortfalls are treated as a planning problem rather than accepted as normal operating practice.",
+          "dimension": "capacity_management",
+          "construct_key": "EILL-F-15",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 16,
+          "item_code": "EILL-F-16",
+          "text": "Major leadership decisions result in clear ownership for implementation.",
+          "dimension": "follow_through",
+          "construct_key": "EILL-F-16",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 17,
+          "item_code": "EILL-F-17",
+          "text": "Major commitments are either followed through or formally revised when circumstances change.",
+          "dimension": "follow_through",
+          "construct_key": "EILL-F-17",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 18,
+          "item_code": "EILL-F-18",
+          "text": "Leadership reviews whether implemented decisions produced the intended operating outcomes.",
+          "dimension": "follow_through",
+          "construct_key": "EILL-F-18",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "ESS",
+      "instrument_name": "Workforce Connection Survey",
+      "version": "2.1",
+      "package_tier": "full",
+      "respondent_role": "invited_employee",
+      "reference_period": "Current experience of your work, team and organisation",
+      "who_should_complete": "Targeted employees, only when specifically invited.",
+      "intro": "This assessment helps EFIOVA understand collective patterns in motivation, connection, voice, recognition and confidence about the future. Responses are interpreted at team, function or organisational level, not as individual employee scores.",
+      "how_to_respond": "Select one response for each statement. There are no right or wrong answers.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "none",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "ESS-F-01",
+          "text": "I feel motivated to do my work well.",
+          "dimension": "motivation_meaning",
+          "construct_key": "ESS-F-01",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "ESS-F-02",
+          "text": "The work my team does makes me feel that my contribution matters.",
+          "dimension": "motivation_meaning",
+          "construct_key": "ESS-F-02",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "ESS-F-03",
+          "text": "People in my team make a genuine effort to help the team succeed.",
+          "dimension": "team_cohesion",
+          "construct_key": "ESS-F-03",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "ESS-F-04",
+          "text": "People in my team take shared responsibility for the team's success.",
+          "dimension": "team_cohesion",
+          "construct_key": "ESS-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "ESS-F-05",
+          "text": "I understand how the work my team does contributes to the organisation's wider goals.",
+          "dimension": "alignment_connection",
+          "construct_key": "ESS-F-05",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "ESS-F-06",
+          "text": "I feel a strong connection to this organisation.",
+          "dimension": "alignment_connection",
+          "construct_key": "ESS-F-06",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 7,
+          "item_code": "ESS-F-07",
+          "text": "People in my team can raise concerns about work without being unfairly dismissed.",
+          "dimension": "voice",
+          "construct_key": "ESS-F-07",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 8,
+          "item_code": "ESS-F-08",
+          "text": "Ideas and suggestions from people in my team are taken seriously.",
+          "dimension": "voice",
+          "construct_key": "ESS-F-08",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 9,
+          "item_code": "ESS-F-09",
+          "text": "Good work is recognised within my team.",
+          "dimension": "recognition",
+          "construct_key": "ESS-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 10,
+          "item_code": "ESS-F-10",
+          "text": "I feel that the contribution of my team is valued by the wider organisation.",
+          "dimension": "recognition",
+          "construct_key": "ESS-F-10",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 11,
+          "item_code": "ESS-F-11",
+          "text": "I believe my organisation is capable of dealing effectively with the challenges ahead.",
+          "dimension": "future_confidence",
+          "construct_key": "ESS-F-11",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 12,
+          "item_code": "ESS-F-12",
+          "text": "I can see myself continuing to contribute meaningfully to this organisation.",
+          "dimension": "future_confidence",
+          "construct_key": "ESS-F-12",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "EPA",
+      "instrument_name": "Operating Conditions Pulse",
+      "version": "1.2",
+      "package_tier": "pilot",
+      "respondent_role": "employee",
+      "reference_period": "Past 30 days.",
+      "who_should_complete": "Employees.",
+      "intro": "This assessment asks how work is currently operating within your team. Responses are combined to understand team and organisational patterns, not to assess or rank individual employees.",
+      "how_to_respond": "Select one response for each statement. There are no right or wrong answers.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "none",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "EPA-P-01",
+          "text": "My team has enough capacity to manage its current workload effectively.",
+          "dimension": "capacity",
+          "construct_key": "EPA-F-01",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "EPA-P-02",
+          "text": "Competing priorities make it difficult for my team to complete its most important work.",
+          "dimension": "priority_clarity",
+          "construct_key": "EPA-F-03",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "EPA-P-03",
+          "text": "My team can maintain its current pace of work without regularly becoming overwhelmed.",
+          "dimension": "capacity",
+          "construct_key": "EPA-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "EPA-P-04",
+          "text": "People in my team are able to work together effectively when demands increase.",
+          "dimension": "collaboration",
+          "construct_key": "EPA-F-05",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "EPA-P-05",
+          "text": "Recent changes in the organisation are making it harder for my team to work effectively.",
+          "dimension": "change_impact",
+          "construct_key": "EPA-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "EPA-P-06",
+          "text": "My team is confident that it can meet the demands ahead.",
+          "dimension": "confidence",
+          "construct_key": "EPA-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 7,
+          "item_code": "EPA-P-07",
+          "text": "Overall, my team is currently operating in a way that is sustainable.",
+          "dimension": "sustainability",
+          "construct_key": "EPA-F-10",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "WDAI",
+      "instrument_name": "Work Demand Assessment",
+      "version": "1.1",
+      "package_tier": "pilot",
+      "respondent_role": "employee",
+      "reference_period": "Past 30 days / typical recent work.",
+      "who_should_complete": "Employees in the agreed operating population.",
+      "intro": "This assessment asks about the demands created by your work. It helps EFIOVA understand how work is structured and where operating demands may be placing pressure on teams or processes.",
+      "how_to_respond": "Choose the response that best reflects how often the statement was true during the reference period.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "frequency",
+      "na_option": "none",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Never",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Rarely",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Sometimes",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Often",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Very Often",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "WDAI-P-01",
+          "text": "My work requires me to switch frequently between tasks or priorities.",
+          "dimension": "cognitive_load",
+          "construct_key": "WDAI-F-02",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 2,
+          "item_code": "WDAI-P-02",
+          "text": "My work requires me to make many decisions within a short period of time.",
+          "dimension": "decision_load",
+          "construct_key": "WDAI-F-04",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "WDAI-P-03",
+          "text": "My work regularly involves difficult interactions.",
+          "dimension": "emotional_load",
+          "construct_key": "WDAI-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "WDAI-P-04",
+          "text": "I spend significant effort sorting out gaps or overlaps in responsibility before work can move forward.",
+          "dimension": "role_clarity",
+          "construct_key": "WDAI-F-12",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 5,
+          "item_code": "WDAI-P-05",
+          "text": "Work regularly extends into time that should be free from work demands.",
+          "dimension": "recovery_boundaries",
+          "construct_key": "WDAI-F-15",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "WDAI-P-06",
+          "text": "There is more work than the available time reasonably allows me to complete.",
+          "dimension": "time_pressure",
+          "construct_key": "WDAI-F-16",
+          "polarity": "negative"
+        }
+      ]
+    },
+    {
+      "instrument_code": "OCEI",
+      "instrument_name": "Operating Capacity Assessment",
+      "version": "1.1",
+      "package_tier": "pilot",
+      "respondent_role": "employee",
+      "reference_period": "Past 30 days, compared with your usual working level.",
+      "who_should_complete": "Employees in the agreed operating population.",
+      "intro": "This assessment asks whether recent work demands are affecting the usable capacity available to perform work consistently. Compare the stated period with your usual working level.",
+      "how_to_respond": "Choose the response that best reflects how often the statement was true during the reference period.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "frequency",
+      "na_option": "NE",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Never",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Rarely",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Sometimes",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Often",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Very Often",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough experience",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "OCEI-P-01",
+          "text": "Routine tasks have required more effort than usual to complete.",
+          "dimension": "effort_cost",
+          "construct_key": "OCEI-F-01",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 2,
+          "item_code": "OCEI-P-02",
+          "text": "Maintaining my usual standard of work has required more deliberate effort than usual.",
+          "dimension": "effort_cost",
+          "construct_key": "OCEI-F-03",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "OCEI-P-03",
+          "text": "Normal work demands have left little capacity for unexpected issues.",
+          "dimension": "reserve_depletion",
+          "construct_key": "OCEI-F-04",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "OCEI-P-04",
+          "text": "Even moderate increases in demand have quickly used up my remaining capacity.",
+          "dimension": "reserve_depletion",
+          "construct_key": "OCEI-F-05",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 5,
+          "item_code": "OCEI-P-05",
+          "text": "A demanding work period has often reduced the capacity I had available for the next work period.",
+          "dimension": "recovery_lag",
+          "construct_key": "OCEI-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "OCEI-P-06",
+          "text": "It has taken longer than usual for my working capacity to return after demanding periods.",
+          "dimension": "recovery_lag",
+          "construct_key": "OCEI-F-08",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 7,
+          "item_code": "OCEI-P-07",
+          "text": "During sustained demand, maintaining a consistent pace has become harder than usual.",
+          "dimension": "performance_stability",
+          "construct_key": "OCEI-F-10",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 8,
+          "item_code": "OCEI-P-08",
+          "text": "During sustained demand, maintaining my usual quality standard has become harder than usual.",
+          "dimension": "performance_stability",
+          "construct_key": "OCEI-F-11",
+          "polarity": "negative"
+        }
+      ]
+    },
+    {
+      "instrument_code": "CRI",
+      "instrument_name": "Operating Culture Risk Assessment",
+      "version": "1.1",
+      "package_tier": "pilot",
+      "respondent_role": "visibility_staff",
+      "reference_period": "Past 6 months.",
+      "who_should_complete": "Employees or managers with sufficient visibility into how work is normally carried out.",
+      "intro": "This assessment looks at how important problems are raised, how responsibility is handled, how information moves, how critical checks are maintained, and how the organisation learns from significant problems. Answer only where you have enough visibility to judge a statement.",
+      "how_to_respond": "Choose one response based on what you have personally observed. Select “Not enough visibility” if you cannot judge a statement reliably.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "NV",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough visibility",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "CRI-P-01",
+          "text": "Serious concerns are escalated to someone with the authority to act.",
+          "dimension": "speak_up",
+          "construct_key": "CRI-F-03",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "CRI-P-02",
+          "text": "Accountability is applied consistently regardless of seniority or performance.",
+          "dimension": "accountability",
+          "construct_key": "CRI-F-06",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "CRI-P-03",
+          "text": "Material concerns reach decision-makers without unnecessary filtering or delay.",
+          "dimension": "information_integrity",
+          "construct_key": "CRI-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "CRI-P-04",
+          "text": "Critical controls and quality standards remain in place when delivery pressure increases.",
+          "dimension": "control_discipline",
+          "construct_key": "CRI-F-10",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "CRI-P-05",
+          "text": "Targets and incentives do not encourage avoidable risks in order to deliver results.",
+          "dimension": "incentives",
+          "construct_key": "CRI-F-13",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "CRI-P-06",
+          "text": "After corrective action is taken, there is follow-through to check whether the problem was actually solved.",
+          "dimension": "learning",
+          "construct_key": "CRI-F-18",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "CPDA",
+      "instrument_name": "Capacity–Performance Dynamics Assessment",
+      "version": "1.1",
+      "package_tier": "pilot",
+      "respondent_role": "process_owner",
+      "reference_period": "Past 30 days.",
+      "who_should_complete": "Process owner / operations lead with direct visibility into the selected process.",
+      "intro": "This assessment looks at the recent operating condition of one defined business process. Answer from direct process visibility; do not estimate where you do not have enough information.",
+      "how_to_respond": "Choose the response that best reflects how often the statement was true during the reference period.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "frequency",
+      "na_option": "NDV",
+      "is_attributable": true,
+      "options": [
+        {
+          "label": "Never",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Rarely",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Sometimes",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Often",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Very Often",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough data/visibility",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "CPDA-P-01",
+          "text": "Work has accumulated faster than the process could consistently clear it.",
+          "dimension": "throughput",
+          "construct_key": "CPDA-F-01",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 2,
+          "item_code": "CPDA-P-02",
+          "text": "Turnaround or cycle times have become longer than normally expected.",
+          "dimension": "throughput",
+          "construct_key": "CPDA-F-02",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 3,
+          "item_code": "CPDA-P-03",
+          "text": "More work than usual has required correction or rework before it could be accepted as complete.",
+          "dimension": "quality",
+          "construct_key": "CPDA-F-04",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 4,
+          "item_code": "CPDA-P-04",
+          "text": "Errors, exceptions or failed checks have occurred more frequently than normally expected.",
+          "dimension": "quality",
+          "construct_key": "CPDA-F-05",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 5,
+          "item_code": "CPDA-P-05",
+          "text": "Deadlines, service levels or delivery commitments have been missed more often than normally expected.",
+          "dimension": "reliability",
+          "construct_key": "CPDA-F-07",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 6,
+          "item_code": "CPDA-P-06",
+          "text": "The process has become less predictable in its ability to deliver expected results on time.",
+          "dimension": "reliability",
+          "construct_key": "CPDA-F-09",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 7,
+          "item_code": "CPDA-P-07",
+          "text": "A moderate increase in demand has quickly caused visible deterioration in process performance.",
+          "dimension": "resilience",
+          "construct_key": "CPDA-F-10",
+          "polarity": "negative"
+        },
+        {
+          "item_number": 8,
+          "item_code": "CPDA-P-08",
+          "text": "Temporary workarounds, extended effort or repeated reprioritisation have been needed to maintain normal process performance.",
+          "dimension": "resilience",
+          "construct_key": "CPDA-F-12",
+          "polarity": "negative"
+        }
+      ]
+    },
+    {
+      "instrument_code": "EILL",
+      "instrument_name": "Executive Operating System Assessment",
+      "version": "1.2",
+      "package_tier": "pilot",
+      "respondent_role": "executive",
+      "reference_period": "Current / recent operating period.",
+      "who_should_complete": "Executives / selected senior operating leaders.",
+      "intro": "This assessment looks at how the executive operating system sets priorities, clarifies decision authority, adapts to evidence, resolves cross-functional conflict, manages capacity and follows through on major commitments. It is not a personality assessment or an individual leader ranking.",
+      "how_to_respond": "Choose one response based on what normally happens in practice. Select “Not enough visibility” if you cannot judge a statement reliably.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "NV",
+      "is_attributable": true,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Not enough visibility",
+          "numeric_value": null,
+          "is_not_applicable": true
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "EILL-P-01",
+          "text": "When new priorities are introduced, senior leadership makes clear what should receive less attention or stop.",
+          "dimension": "prioritisation",
+          "construct_key": "EILL-F-02",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "EILL-P-02",
+          "text": "For major decisions, it is clear who holds final authority.",
+          "dimension": "decision_rights",
+          "construct_key": "EILL-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "EILL-P-03",
+          "text": "Major decisions are reconsidered when new evidence shows that an important assumption is no longer valid.",
+          "dimension": "evidence_adaptation",
+          "construct_key": "EILL-F-09",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "EILL-P-04",
+          "text": "Senior leaders resolve significant priority conflicts before they cause prolonged delays.",
+          "dimension": "cross_functional",
+          "construct_key": "EILL-F-11",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "EILL-P-05",
+          "text": "When demand exceeds available capacity, senior leadership makes explicit trade-offs in scope, timing or resources.",
+          "dimension": "capacity_management",
+          "construct_key": "EILL-F-14",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "EILL-P-06",
+          "text": "Major commitments are followed through or formally revised when circumstances change.",
+          "dimension": "follow_through",
+          "construct_key": "EILL-F-17",
+          "polarity": "positive"
+        }
+      ]
+    },
+    {
+      "instrument_code": "ESS",
+      "instrument_name": "Workforce Connection Survey",
+      "version": "1.1",
+      "package_tier": "pilot",
+      "respondent_role": "invited_employee",
+      "reference_period": "Past 30 days / current recent experience.",
+      "who_should_complete": "Targeted employees, only when specifically invited.",
+      "intro": "This assessment helps EFIOVA understand collective patterns in motivation, connection, voice, recognition and confidence about the future. Responses are interpreted at team, function or organisational level, not as individual employee scores.",
+      "how_to_respond": "Select one response for each statement. There are no right or wrong answers.",
+      "privacy_notice": "Responses are intended for aggregated team, function, process-group or organisational analysis. They are not designed to create individual employee risk scores or individual employment decisions. Small groups may be combined or withheld where needed to protect respondents.",
+      "scale_type": "agreement",
+      "na_option": "none",
+      "is_attributable": false,
+      "options": [
+        {
+          "label": "Strongly Disagree",
+          "numeric_value": 1,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Disagree",
+          "numeric_value": 2,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Neither Agree nor Disagree",
+          "numeric_value": 3,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Agree",
+          "numeric_value": 4,
+          "is_not_applicable": false
+        },
+        {
+          "label": "Strongly Agree",
+          "numeric_value": 5,
+          "is_not_applicable": false
+        }
+      ],
+      "items": [
+        {
+          "item_number": 1,
+          "item_code": "ESS-P-01",
+          "text": "The work my team does makes me feel that my contribution matters.",
+          "dimension": "motivation_meaning",
+          "construct_key": "ESS-F-02",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 2,
+          "item_code": "ESS-P-02",
+          "text": "People in my team take shared responsibility for the team's success.",
+          "dimension": "team_cohesion",
+          "construct_key": "ESS-F-04",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 3,
+          "item_code": "ESS-P-03",
+          "text": "I understand how the work my team does contributes to the organisation's wider goals.",
+          "dimension": "alignment_connection",
+          "construct_key": "ESS-F-05",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 4,
+          "item_code": "ESS-P-04",
+          "text": "People in my team can raise concerns about work without being unfairly dismissed.",
+          "dimension": "voice",
+          "construct_key": "ESS-F-07",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 5,
+          "item_code": "ESS-P-05",
+          "text": "I feel that the contribution of my team is valued by the wider organisation.",
+          "dimension": "recognition",
+          "construct_key": "ESS-F-10",
+          "polarity": "positive"
+        },
+        {
+          "item_number": 6,
+          "item_code": "ESS-P-06",
+          "text": "I believe my organisation is capable of dealing effectively with the challenges ahead.",
+          "dimension": "future_confidence",
+          "construct_key": "ESS-F-11",
+          "polarity": "positive"
+        }
+      ]
+    }
+  ]
+}

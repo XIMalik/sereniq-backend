@@ -7,7 +7,8 @@ class Service(models.Model):
     description = models.TextField()
     duration = models.PositiveIntegerField(help_text='Duration in days')
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    provider = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='services')
+    # SET_NULL, not CASCADE: deleting a user must never delete the services (and bookings) they provided.
+    provider = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='services')
     created_at = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=20, default='training')
 

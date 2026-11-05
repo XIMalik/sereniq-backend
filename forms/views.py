@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import Form, Question, QuestionOption, Submission, AccessKey
+from .models import Form, Question, QuestionOption, Submission, AccessKey, FormLockedError
 from .serializers import (
     FormSerializer, QuestionSerializer, QuestionCreateSerializer,
     SubmissionSerializer, QuestionOptionSerializer, AccessKeySerializer
@@ -13,7 +13,16 @@ from users.permissions import IsAdmin
 from .services.scoring_engine import ScoringEngine
 from .utils import validate_access_key, get_accessible_forms
 
-class FormViewSet(viewsets.ModelViewSet):
+class FormLockedMixin:
+    """Report edits to a form that already has submissions as 409 instead of a server error."""
+
+    def handle_exception(self, exc):
+        if isinstance(exc, FormLockedError):
+            return Response({'error': ' '.join(exc.messages)}, status=status.HTTP_409_CONFLICT)
+        return super().handle_exception(exc)
+
+
+class FormViewSet(FormLockedMixin, viewsets.ModelViewSet):
     serializer_class = FormSerializer
     permission_classes = [AllowAny]  # Forms are public
 
@@ -138,6 +147,11 @@ class FormViewSet(viewsets.ModelViewSet):
     def submit(self, request, pk=None):
         """Anonymous form submission"""
         form = self.get_object()
+        if form.is_efiova:
+            return Response(
+                {'error': 'EFIOVA assessments are submitted with a campaign access key only.'},
+                status=status.HTTP_403_FORBIDDEN
+            )
         serializer = SubmissionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         submission = serializer.save(form=form)
@@ -158,7 +172,7 @@ class FormViewSet(viewsets.ModelViewSet):
         
         return Response(SubmissionSerializer(submission).data, status=status.HTTP_201_CREATED)
 
-class QuestionViewSet(viewsets.ModelViewSet):
+class QuestionViewSet(FormLockedMixin, viewsets.ModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     permission_classes = [AllowAny]  # Questions are public

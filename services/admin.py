@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest
+from .models import Service, Booking, IndividualBooking, EmployeeBooking, WorkplaceGovernanceBooking, PilotRequest, ContactFormSubmission
 
 
 @admin.register(Service)
@@ -122,3 +122,11 @@ class PilotRequestAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+
+
+@admin.register(ContactFormSubmission)
+class ContactFormSubmissionAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'created_at']
+    list_filter = ['created_at']
+    search_fields = ['name', 'email', 'message']
+    readonly_fields = ['created_at']
